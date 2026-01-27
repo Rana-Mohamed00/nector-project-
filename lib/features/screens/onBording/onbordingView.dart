@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nectar_grocery/screens/log_in.dart';
-import 'package:nectar_grocery/screens/start.dart';
+import 'package:nectar_grocery/features/widgets/NextScreenButton.dart';
+import 'package:nectar_grocery/features/screens/Login/loginView.dart';
+
+
 class Onbording extends StatelessWidget {
   const Onbording({super.key});
 

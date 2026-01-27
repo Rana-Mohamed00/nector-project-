@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nectar_grocery/screens/HomeScreen.dart';
+import 'package:nectar_grocery/features/widgets/ExploreBox.dart';
 
 class Explore extends StatelessWidget {
   const Explore({super.key});
@@ -43,10 +43,9 @@ class Explore extends StatelessWidget {
             cursorColor: Color.fromARGB(255, 23, 208, 116),
           ),
           ),
-            //InputBox(UserInput: product, HintMessage: "Search Store",icon: Icons.search),
+            
             SizedBox(height: 15),
-            //Padding(padding: EdgeInsets.all(5),
-            //child:
+            
             Row(children: [
              Explore_box(path_image: "assests/images/vege.png", txt:"Frash Fruits\n& Vegetable",
              border_color: const Color.fromARGB(255, 146, 226, 146),container_color: const Color.fromARGB(255, 172, 226, 199), )
@@ -80,60 +79,11 @@ class Explore extends StatelessWidget {
             border_color: const Color.fromARGB(255, 239, 147, 213),container_color: const Color.fromARGB(255, 196, 155, 197),)
             ],
             )
-            //"Frash Fruits\n& Vegetable"  "assests/images/vege.png"
+            
           ],
         ),
       ),
-      ),
-      bottomNavigationBar:
-      Container(
-        height: 70,
-       child: Row(
-        children: [
-          SizedBox(width: 40),
-          Icon_navigate(icon_bottom: Icons.storefront_outlined, name_icon: "Shop", nextpage: Homescreen()),
-           SizedBox(width: 40),
-          Icon_navigate(icon_bottom: Icons.search_outlined , name_icon: "Explore",nextpage:Explore()),
-           SizedBox(width: 40),
-          Icon_navigate(icon_bottom: Icons.shopping_cart_outlined , name_icon: "Cart",nextpage: Homescreen()),
-           SizedBox(width: 40),
-          Icon_navigate( icon_bottom: Icons.favorite_border_outlined , name_icon: "Favourite",nextpage: Homescreen()),
-           SizedBox(width: 40),
-          Icon_navigate( icon_bottom: Icons.account_box_outlined , name_icon: "Account",nextpage: Homescreen()),
-        ],
-      ),
-    )
+      )
     );
-  }
-}
-
-class Explore_box extends StatelessWidget {
-  String path_image, txt;
-  Color container_color;
-  Color border_color;
-   Explore_box({super.key,required this.path_image,required this.txt,required this.border_color, required this.container_color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-              width: 175,
-              height: 190,
-              
-              alignment:Alignment.center,
-                    decoration: BoxDecoration(
-                    color: container_color,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all( color:border_color ,width: 2)
-                  ),
-              child: 
-                 Column(
-                  children: [
-                    Image.asset(path_image,height: 100,width: 270),
-                    SizedBox(height: 20),
-                    Text(txt,style: TextStyle(fontWeight: FontWeight.bold))
-                  ],
-                ),
-              
-            );
   }
 }

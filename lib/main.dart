@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nectar_grocery/screens/Explore.dart';
-import 'package:nectar_grocery/screens/HomeScreen.dart';
-import 'package:nectar_grocery/screens/log_in.dart';
-import 'package:nectar_grocery/screens/onbording.dart';
-import 'package:nectar_grocery/screens/start.dart';
+import 'package:nectar_grocery/features/screens/Splash/SplashView.dart';
 
 void main() {
   runApp(MyApp());

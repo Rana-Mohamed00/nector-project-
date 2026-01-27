@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:nectar_grocery/screens/HomeScreen.dart';
-import 'package:nectar_grocery/screens/log_in.dart';
-import 'package:nectar_grocery/screens/start.dart';
+import 'package:nectar_grocery/Root.dart';
+import 'package:nectar_grocery/features/widgets/CustomTextField.dart';
+import 'package:nectar_grocery/features/widgets/NextScreenButton.dart';
+import 'package:nectar_grocery/features/widgets/passwordTextField.dart';
 
 class Signup extends StatefulWidget {
-   Signup({super.key});
+   const Signup({super.key});
 
   @override
   State<Signup> createState() => _SignupState();
@@ -14,8 +15,7 @@ class _SignupState extends State<Signup> {
   
   @override
   Widget build(BuildContext context) {
-    //String HintMessage;
-    TextEditingController ppassword=TextEditingController();
+    //TextEditingController ppassword=TextEditingController();
     TextEditingController username = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.white
@@ -38,19 +38,18 @@ class _SignupState extends State<Signup> {
           Text("Enter your credentials to continue"),
           SizedBox(height: 40),
           Text("Username"),
-          InputBox(UserInput: username , HintMessage: "Please Enter Your Username"),
+          CustomTextField(UserInput: username , HintMessage: "Please Enter Your Username"),
           SizedBox(height: 25),
           Text("Password"),
-          _password_widgetState(),
+          password_widgetState(),
           SizedBox(height: 10),
            Row(
             children: [
-              //SizedBox(width: 250),
               Text("By continuing you agree to our Terms of Service\n and Privacy Policy.")
             ],
            ),
            SizedBox(height: 40),
-           Button(text_in: "Sign Up",h: 50,w:340,nextpage: Homescreen()),
+           Button(text_in: "Sign Up",h: 50,w:340,nextpage: Root()),
            SizedBox(height: 15),
            Row(
             children: [
@@ -68,40 +67,6 @@ class _SignupState extends State<Signup> {
       )
       
       
-    );
-  }
-}
-
-class _password_widgetState extends StatefulWidget {
-   _password_widgetState({super.key});
-
-  @override
-  State<_password_widgetState> createState() => _password_widgetStateState();
-}
-
-class _password_widgetStateState extends State<_password_widgetState> {
-  bool IsHidden =true;
-   TextEditingController? ppassword;
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: ppassword,
-      obscureText: IsHidden,
-      decoration: InputDecoration(
-        hint: Text("Please Enter Your Password",style: TextStyle(color: Colors.grey)),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color:Color.fromARGB(255, 23, 208, 116))
-        ),
-        suffix: IconButton(
-          icon: Icon(IsHidden ? Icons.visibility_off : Icons.visibility),
-          onPressed:(){
-            setState(() {
-              IsHidden = !IsHidden;
-            });
-          } 
-          )
-      ),
-      cursorColor: Color.fromARGB(255, 23, 208, 116),
     );
   }
 }
