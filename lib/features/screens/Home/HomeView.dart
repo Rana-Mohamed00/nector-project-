@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nectar_grocery/features/data/products/productModel.dart';
-import 'package:nectar_grocery/features/data/products/productRepo.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nectar_grocery/core/constants/AppColors.dart';
+import 'package:nectar_grocery/features/data/products/ProductCubit.dart';
+import 'package:nectar_grocery/features/data/products/ProductStates.dart';
+import 'package:nectar_grocery/features/screens/Home/HomeBody.dart';
 import 'package:nectar_grocery/features/widgets/CustomProduct.dart';
 import 'package:nectar_grocery/features/screens/ProductDetail/ProductDetailView.dart';
 
@@ -13,29 +16,8 @@ class Homescreen extends StatefulWidget {
 
 class _HomescreenState extends State<Homescreen> {
 
-
-  bool isLoading =true;
-  TextEditingController product=TextEditingController();
-  List<ProductModel>? proList ;
-
-  @override
-  void initState(){
-    super.initState();
-    getProductsFromRepo();
-  }
-
-  dynamic getProductsFromRepo() async{
-    proList =(await ProductRepo().getAllProducts());
-    isLoading = false;
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
-
-    if (proList == null) {
-      return Center(child: CircularProgressIndicator());
-    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -85,7 +67,7 @@ class _HomescreenState extends State<Homescreen> {
                 borderRadius: BorderRadius.circular(20)
               ),
               child:   TextFormField(
-               controller: product,
+               //controller: product,
                decoration: InputDecoration(
               
                hint: Text("Search Store",style: TextStyle(color: Colors.grey)),
@@ -110,54 +92,7 @@ class _HomescreenState extends State<Homescreen> {
               ]
             ),
             SizedBox(height: 10),
-            SizedBox(
-              height: 250,
-              child: 
-               ListView.builder
-              (
-                scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                   return GestureDetector(
-                    onTap: ()=>
-                      Navigator.push(context,MaterialPageRoute(builder:(context) => Productdetailview())),
-                    child: Product(
-                    path_image: proList![index].images ,
-                    pro_name: proList![index].title ,
-                    weight: proList![index].description,
-                    price: proList![index].price
-                   )
-                  );
-                },
-              ),
-              ),
-            SizedBox(height: 10),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Best Selling",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
-                SizedBox(width: 175),
-                Text("See all",style: TextStyle(color:Color.fromARGB(255, 23, 208, 116)))
-              ]
-            ),
-            SizedBox(height: 15),
-             SizedBox(
-              height: 250,
-              child: 
-               ListView.builder
-              (
-                scrollDirection: Axis.horizontal,
-                itemCount: 15,
-                itemBuilder: (context, index) {
-                   return Product(
-                    path_image: proList![index+10].images ,
-                    pro_name: proList![index+10].title ,
-                    weight: proList![index+10].description,
-                    price: proList![index+10].price
-                    );
-                },
-              ),
-              ),
+            HomeBody()
           ],
         ),
         )
